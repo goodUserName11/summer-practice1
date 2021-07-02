@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DALInterfaces
+namespace PLConsole
 {
-    interface IFilesDao
+    class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }

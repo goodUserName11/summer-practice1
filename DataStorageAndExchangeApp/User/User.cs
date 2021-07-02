@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SQLDAL
+namespace User
 {
-    class FileSqlDao
+    public class User
     {
     }
 }
