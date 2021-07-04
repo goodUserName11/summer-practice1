@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.MyFile;
+using Common.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,33 @@ using System.Threading.Tasks;
 
 namespace BLLInterfaces
 {
-    interface IDataExchangerLogic
+    public interface IDataExchangerLogic
     {
+        bool WriteFile(int fileId, string fileName);
+
+        User LogIn(string login, string password);
+
+        User SignUp(string login, string nickname, string password);
+
+        bool CreateFile(string fileName, string descrition, int userId);
+
+        List<User> GetUsers(string filter);
+
+        List<MyFile> GetFiles(string filter);
+
+        User GetUserInfo(int userId);
+
+        bool ChangeUserInfo(int userId, string firstname, string lastname,
+            string nickname, string description);
+
+        bool ChangeUserPassword(int userId, string password);
+
+        bool ChangeFile(int fileId, string fileName, string description);
+
+        bool DeleteFile(int fileId, int userId);
+
+        bool DeleteUser(int userId);
+
+        //DeleteUserAdmin
     }
 }

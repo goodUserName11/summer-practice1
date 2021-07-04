@@ -32,17 +32,17 @@ namespace PLWinForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.viewsTSDDBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.yourProfileTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.filesTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.currentUserTSBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.changeUserTSBtn = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.filesTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usersTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.yourProfileTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.currentUserTSLbl = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@ namespace PLWinForms
             this.viewsTSDDBtn,
             this.toolStripSeparator1,
             this.toolStripSeparator3,
-            this.currentUserTSLbl,
+            this.currentUserTSBtn,
             this.toolStripSeparator4,
             this.changeUserTSBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -75,10 +75,53 @@ namespace PLWinForms
             this.viewsTSDDBtn.Size = new System.Drawing.Size(50, 22);
             this.viewsTSDDBtn.Text = "Views";
             // 
+            // yourProfileTSMenuItem
+            // 
+            this.yourProfileTSMenuItem.Name = "yourProfileTSMenuItem";
+            this.yourProfileTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.yourProfileTSMenuItem.Text = "Your Profile";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(132, 6);
+            // 
+            // filesTSMenuItem
+            // 
+            this.filesTSMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.filesTSMenuItem.Name = "filesTSMenuItem";
+            this.filesTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.filesTSMenuItem.Text = "Files";
+            // 
+            // usersTSMenuItem
+            // 
+            this.usersTSMenuItem.Name = "usersTSMenuItem";
+            this.usersTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.usersTSMenuItem.Text = "Users";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // currentUserTSBtn
+            // 
+            this.currentUserTSBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.currentUserTSBtn.Image = ((System.Drawing.Image)(resources.GetObject("currentUserTSBtn.Image")));
+            this.currentUserTSBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.currentUserTSBtn.Name = "currentUserTSBtn";
+            this.currentUserTSBtn.Size = new System.Drawing.Size(53, 22);
+            this.currentUserTSBtn.Text = "CurUser";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // changeUserTSBtn
             // 
@@ -88,50 +131,11 @@ namespace PLWinForms
             this.changeUserTSBtn.Name = "changeUserTSBtn";
             this.changeUserTSBtn.Size = new System.Drawing.Size(78, 22);
             this.changeUserTSBtn.Text = "Change User";
+            this.changeUserTSBtn.Click += new System.EventHandler(this.changeUserTSBtn_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // filesTSMenuItem
-            // 
-            this.filesTSMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.filesTSMenuItem.Name = "filesTSMenuItem";
-            this.filesTSMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.filesTSMenuItem.Text = "Files";
-            // 
-            // usersTSMenuItem
-            // 
-            this.usersTSMenuItem.Name = "usersTSMenuItem";
-            this.usersTSMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.usersTSMenuItem.Text = "Users";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // yourProfileTSMenuItem
-            // 
-            this.yourProfileTSMenuItem.Name = "yourProfileTSMenuItem";
-            this.yourProfileTSMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.yourProfileTSMenuItem.Text = "Your Profile";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // currentUserTSLbl
-            // 
-            this.currentUserTSLbl.Name = "currentUserTSLbl";
-            this.currentUserTSLbl.Size = new System.Drawing.Size(49, 22);
-            this.currentUserTSLbl.Text = "CurUser";
             // 
             // MainForm
             // 
@@ -139,7 +143,9 @@ namespace PLWinForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 387);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Data Exchanger";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -163,8 +169,8 @@ namespace PLWinForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem yourProfileTSMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel currentUserTSLbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton currentUserTSBtn;
     }
 }
 

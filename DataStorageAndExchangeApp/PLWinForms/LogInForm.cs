@@ -7,17 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common.User;
+using BLLInterfaces;
 
 namespace PLWinForms
 {
     public partial class LogInForm : Form
     {
-        public LogInForm()
+        IDataExchangerLogic _logic;
+        public User CurrentUser { get; private set; }
+
+
+        public LogInForm(IDataExchangerLogic logic)
         {
             InitializeComponent();
 
-            signUpBtn.Enabled = false;
-            logInBtn.Enabled = false;
+            _logic = logic;
+
         }
 
         private void signUpChB_CheckedChanged(object sender, EventArgs e)
@@ -33,8 +39,6 @@ namespace PLWinForms
                 logInGB.Enabled = false;
 
                 errorProvider1.Clear();
-
-                signUpBtn.Enabled = false;
             }
             else
             {
@@ -45,8 +49,6 @@ namespace PLWinForms
                 signUpGB.Enabled = false;
 
                 errorProvider1.Clear();
-
-                logInBtn.Enabled = false;
             }
 
         }
@@ -56,8 +58,13 @@ namespace PLWinForms
             Control tb = (TextBox)sender;
 
             LoginErrorCheck(tb);
+        }
 
-            SignUpErrorsCheck();
+        private void nicknameTB_Leave(object sender, EventArgs e)
+        {
+            Control tb = (TextBox)sender;
+
+            LoginErrorCheck(tb);
         }
 
         private void signUpPasswordTB_Leave(object sender, EventArgs e)
@@ -67,8 +74,6 @@ namespace PLWinForms
             PasswordErrorCheck(tb);
 
             RepeatPasswordErrorCheck(repeatPasswordTB);
-
-            SignUpErrorsCheck();
         }
 
         private void repeatPasswordTB_Leave(object sender, EventArgs e)
@@ -76,8 +81,6 @@ namespace PLWinForms
             Control tb = (TextBox)sender;
 
             RepeatPasswordErrorCheck(tb);
-
-            SignUpErrorsCheck();
         }
 
         private void showPasswordChB_CheckedChanged(object sender, EventArgs e)
@@ -105,8 +108,6 @@ namespace PLWinForms
             Control tb = (TextBox)sender;
 
             LoginErrorCheck(tb);
-
-            LogInErrorsCheck();
         }
 
         private void passwordTB_Leave(object sender, EventArgs e)
@@ -114,19 +115,70 @@ namespace PLWinForms
             Control tb = (TextBox)sender;
 
             PasswordErrorCheck(tb);
-
-            LogInErrorsCheck();
         }
 
 
         private void logInBtn_Click(object sender, EventArgs e)
         {
-            //
+            LoginErrorCheck(loginTB);
+            PasswordErrorCheck(passwordTB);
+
+            if (HasLogInErrors())
+                MessageBox.Show("Error in login and/or password!", "Warning!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                try
+                {
+                    CurrentUser = _logic.LogIn(loginTB.Text, passwordTB.Text);
+
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                catch(ArgumentException error)
+                {
+                    MessageBox.Show(error.Message, "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch(InvalidOperationException error)
+                {
+                    MessageBox.Show(error.Message, "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void signUpBtn_Click(object sender, EventArgs e)
         {
-            //
+            LoginErrorCheck(signUpLoginTB);
+            LoginErrorCheck(nicknameTB);
+            PasswordErrorCheck(signUpPasswordTB);
+            RepeatPasswordErrorCheck(repeatPasswordTB);
+
+            if (HasSignUpErrors())
+                MessageBox.Show("Error in login and/or password and/or nickname!", "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                try
+                {
+                    CurrentUser = _logic.SignUp(signUpLoginTB.Text, nicknameTB.Text, signUpPasswordTB.Text);
+
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                catch(ArgumentException error)
+                {
+                    MessageBox.Show(error.Message, "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch(InvalidOperationException error)
+                {
+                    MessageBox.Show(error.Message, "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
         }
 
         void LoginErrorCheck(Control login)
@@ -145,7 +197,7 @@ namespace PLWinForms
 
             if (string.IsNullOrEmpty(login.Text))
             {
-                errorProvider1.SetError(login, "Login field cannot be is empty");
+                errorProvider1.SetError(login, "Field cannot be is empty");
             }
             else if (!onlyLettersAndNumbers)
             {
@@ -181,30 +233,32 @@ namespace PLWinForms
             }
         }
 
-        void SignUpErrorsCheck()
+        bool HasSignUpErrors()
         {
             if (errorProvider1.GetError(signUpLoginTB) == "" &&
                 errorProvider1.GetError(signUpPasswordTB) == "" &&
-                errorProvider1.GetError(repeatPasswordTB) == "" &&
+                errorProvider1.GetError(repeatPasswordTB) == "" && 
+                errorProvider1.GetError(nicknameTB) == "" /*&&
                 !string.IsNullOrEmpty(signUpLoginTB.Text) &&
                 !string.IsNullOrEmpty(signUpPasswordTB.Text) &&
-                !string.IsNullOrEmpty(repeatPasswordTB.Text))
+                !string.IsNullOrEmpty(repeatPasswordTB.Text) &&
+                !string.IsNullOrEmpty(nicknameTB.Text)*/)
             {
-                signUpBtn.Enabled = true;
+                return false;
             }
-            else signUpBtn.Enabled = false;
+            else return true;
         }
 
-        void LogInErrorsCheck()
+        bool HasLogInErrors()
         {
             if (errorProvider1.GetError(loginTB) == "" &&
-                errorProvider1.GetError(passwordTB) == "" &&
+                errorProvider1.GetError(passwordTB) == ""/* &&
                 !string.IsNullOrEmpty(loginTB.Text) &&
-                !string.IsNullOrEmpty(passwordTB.Text))
+                !string.IsNullOrEmpty(passwordTB.Text)*/)
             {
-                logInBtn.Enabled = true;
+                return false;
             }
-            else logInBtn.Enabled = false;
+            else return true;
         }
     }
 }

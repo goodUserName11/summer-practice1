@@ -34,7 +34,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\DataStorageAndExchangeApp\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\DataStorageAndExchangeApp\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\DataStorageAndExchangeApp\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\DataStorageAndExchangeApp\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,8 +62,15 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilesForm.Designer.cs">
+      <DependentUpon>FilesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FilesForm.resx">
+      <DependentUpon>FilesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,6 +103,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +116,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BAL\BLL.csproj">
+      <Project>{bb9f9e8c-190d-4904-8aab-9e48b5dd8ec4}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLLInterfaces\BLLInterfaces.csproj">
+      <Project>{15938dcd-b56f-45ca-b213-70cc788cd970}</Project>
+      <Name>BLLInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.MyFile\Common.MyFile.csproj">
+      <Project>{3931ed60-7329-4624-8d29-9564a88ba680}</Project>
+      <Name>Common.MyFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.UserRole\Common.UserRole.csproj">
+      <Project>{bf952bcf-c66c-44fc-9e21-a6a0f25ff1b9}</Project>
+      <Name>Common.UserRole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.User\Common.User.csproj">
+      <Project>{a2b19438-3e46-4b17-9840-094e8b32ade5}</Project>
+      <Name>Common.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dependencies\Dependencies.csproj">
+      <Project>{a85d640c-46c0-4c13-bb0e-bb9a97a3f68c}</Project>
+      <Name>Dependencies</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

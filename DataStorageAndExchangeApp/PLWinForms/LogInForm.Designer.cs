@@ -32,12 +32,14 @@ namespace PLWinForms
             this.components = new System.ComponentModel.Container();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.logInGB = new System.Windows.Forms.GroupBox();
+            this.showPasswordLogInChB = new System.Windows.Forms.CheckBox();
             this.logInBtn = new System.Windows.Forms.Button();
             this.passwordLbl = new System.Windows.Forms.Label();
             this.loginLbl = new System.Windows.Forms.Label();
             this.passwordTB = new System.Windows.Forms.TextBox();
             this.loginTB = new System.Windows.Forms.TextBox();
             this.signUpGB = new System.Windows.Forms.GroupBox();
+            this.showPasswordSignUpChB = new System.Windows.Forms.CheckBox();
             this.signUpBtn = new System.Windows.Forms.Button();
             this.repeatPasswordLbl = new System.Windows.Forms.Label();
             this.signUpPasswordLbl = new System.Windows.Forms.Label();
@@ -46,8 +48,8 @@ namespace PLWinForms
             this.signUpPasswordTB = new System.Windows.Forms.TextBox();
             this.signUpLoginTB = new System.Windows.Forms.TextBox();
             this.signUpChB = new System.Windows.Forms.CheckBox();
-            this.showPasswordSignUpChB = new System.Windows.Forms.CheckBox();
-            this.showPasswordLogInChB = new System.Windows.Forms.CheckBox();
+            this.nicknameLbl = new System.Windows.Forms.Label();
+            this.nicknameTB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.logInGB.SuspendLayout();
             this.signUpGB.SuspendLayout();
@@ -71,6 +73,17 @@ namespace PLWinForms
             this.logInGB.TabIndex = 0;
             this.logInGB.TabStop = false;
             this.logInGB.Text = "Log In";
+            // 
+            // showPasswordLogInChB
+            // 
+            this.showPasswordLogInChB.AutoSize = true;
+            this.showPasswordLogInChB.Location = new System.Drawing.Point(45, 128);
+            this.showPasswordLogInChB.Name = "showPasswordLogInChB";
+            this.showPasswordLogInChB.Size = new System.Drawing.Size(108, 17);
+            this.showPasswordLogInChB.TabIndex = 4;
+            this.showPasswordLogInChB.Text = "Show Password?";
+            this.showPasswordLogInChB.UseVisualStyleBackColor = true;
+            this.showPasswordLogInChB.CheckedChanged += new System.EventHandler(this.showPasswordChB_CheckedChanged);
             // 
             // logInBtn
             // 
@@ -119,6 +132,8 @@ namespace PLWinForms
             // 
             // signUpGB
             // 
+            this.signUpGB.Controls.Add(this.nicknameLbl);
+            this.signUpGB.Controls.Add(this.nicknameTB);
             this.signUpGB.Controls.Add(this.showPasswordSignUpChB);
             this.signUpGB.Controls.Add(this.signUpBtn);
             this.signUpGB.Controls.Add(this.repeatPasswordLbl);
@@ -136,11 +151,22 @@ namespace PLWinForms
             this.signUpGB.Text = "Sign Up";
             this.signUpGB.Visible = false;
             // 
+            // showPasswordSignUpChB
+            // 
+            this.showPasswordSignUpChB.AutoSize = true;
+            this.showPasswordSignUpChB.Location = new System.Drawing.Point(48, 191);
+            this.showPasswordSignUpChB.Name = "showPasswordSignUpChB";
+            this.showPasswordSignUpChB.Size = new System.Drawing.Size(108, 17);
+            this.showPasswordSignUpChB.TabIndex = 4;
+            this.showPasswordSignUpChB.Text = "Show Password?";
+            this.showPasswordSignUpChB.UseVisualStyleBackColor = true;
+            this.showPasswordSignUpChB.CheckedChanged += new System.EventHandler(this.showPasswordChB_CheckedChanged);
+            // 
             // signUpBtn
             // 
-            this.signUpBtn.Location = new System.Drawing.Point(161, 196);
+            this.signUpBtn.Location = new System.Drawing.Point(177, 206);
             this.signUpBtn.Name = "signUpBtn";
-            this.signUpBtn.Size = new System.Drawing.Size(100, 45);
+            this.signUpBtn.Size = new System.Drawing.Size(84, 35);
             this.signUpBtn.TabIndex = 3;
             this.signUpBtn.Text = "Sign Up";
             this.signUpBtn.UseVisualStyleBackColor = true;
@@ -149,7 +175,7 @@ namespace PLWinForms
             // repeatPasswordLbl
             // 
             this.repeatPasswordLbl.AutoSize = true;
-            this.repeatPasswordLbl.Location = new System.Drawing.Point(45, 127);
+            this.repeatPasswordLbl.Location = new System.Drawing.Point(48, 151);
             this.repeatPasswordLbl.Name = "repeatPasswordLbl";
             this.repeatPasswordLbl.Size = new System.Drawing.Size(91, 13);
             this.repeatPasswordLbl.TabIndex = 2;
@@ -158,7 +184,7 @@ namespace PLWinForms
             // signUpPasswordLbl
             // 
             this.signUpPasswordLbl.AutoSize = true;
-            this.signUpPasswordLbl.Location = new System.Drawing.Point(45, 85);
+            this.signUpPasswordLbl.Location = new System.Drawing.Point(48, 109);
             this.signUpPasswordLbl.Name = "signUpPasswordLbl";
             this.signUpPasswordLbl.Size = new System.Drawing.Size(53, 13);
             this.signUpPasswordLbl.TabIndex = 2;
@@ -166,7 +192,7 @@ namespace PLWinForms
             // 
             // repeatPasswordTB
             // 
-            this.repeatPasswordTB.Location = new System.Drawing.Point(45, 143);
+            this.repeatPasswordTB.Location = new System.Drawing.Point(48, 167);
             this.repeatPasswordTB.Name = "repeatPasswordTB";
             this.repeatPasswordTB.Size = new System.Drawing.Size(329, 20);
             this.repeatPasswordTB.TabIndex = 1;
@@ -176,7 +202,7 @@ namespace PLWinForms
             // signUpLoginLbl
             // 
             this.signUpLoginLbl.AutoSize = true;
-            this.signUpLoginLbl.Location = new System.Drawing.Point(45, 16);
+            this.signUpLoginLbl.Location = new System.Drawing.Point(45, 19);
             this.signUpLoginLbl.Name = "signUpLoginLbl";
             this.signUpLoginLbl.Size = new System.Drawing.Size(33, 13);
             this.signUpLoginLbl.TabIndex = 2;
@@ -184,7 +210,7 @@ namespace PLWinForms
             // 
             // signUpPasswordTB
             // 
-            this.signUpPasswordTB.Location = new System.Drawing.Point(45, 101);
+            this.signUpPasswordTB.Location = new System.Drawing.Point(48, 125);
             this.signUpPasswordTB.Name = "signUpPasswordTB";
             this.signUpPasswordTB.Size = new System.Drawing.Size(329, 20);
             this.signUpPasswordTB.TabIndex = 1;
@@ -193,7 +219,7 @@ namespace PLWinForms
             // 
             // signUpLoginTB
             // 
-            this.signUpLoginTB.Location = new System.Drawing.Point(45, 35);
+            this.signUpLoginTB.Location = new System.Drawing.Point(48, 35);
             this.signUpLoginTB.Name = "signUpLoginTB";
             this.signUpLoginTB.Size = new System.Drawing.Size(330, 20);
             this.signUpLoginTB.TabIndex = 0;
@@ -210,27 +236,21 @@ namespace PLWinForms
             this.signUpChB.UseVisualStyleBackColor = true;
             this.signUpChB.CheckedChanged += new System.EventHandler(this.signUpChB_CheckedChanged);
             // 
-            // showPasswordSignUpChB
+            // nicknameLbl
             // 
-            this.showPasswordSignUpChB.AutoSize = true;
-            this.showPasswordSignUpChB.Location = new System.Drawing.Point(45, 167);
-            this.showPasswordSignUpChB.Name = "showPasswordSignUpChB";
-            this.showPasswordSignUpChB.Size = new System.Drawing.Size(108, 17);
-            this.showPasswordSignUpChB.TabIndex = 4;
-            this.showPasswordSignUpChB.Text = "Show Password?";
-            this.showPasswordSignUpChB.UseVisualStyleBackColor = true;
-            this.showPasswordSignUpChB.CheckedChanged += new System.EventHandler(this.showPasswordChB_CheckedChanged);
+            this.nicknameLbl.AutoSize = true;
+            this.nicknameLbl.Location = new System.Drawing.Point(45, 61);
+            this.nicknameLbl.Name = "nicknameLbl";
+            this.nicknameLbl.Size = new System.Drawing.Size(55, 13);
+            this.nicknameLbl.TabIndex = 6;
+            this.nicknameLbl.Text = "Nickname";
             // 
-            // showPasswordLogInChB
+            // nicknameTB
             // 
-            this.showPasswordLogInChB.AutoSize = true;
-            this.showPasswordLogInChB.Location = new System.Drawing.Point(45, 128);
-            this.showPasswordLogInChB.Name = "showPasswordLogInChB";
-            this.showPasswordLogInChB.Size = new System.Drawing.Size(108, 17);
-            this.showPasswordLogInChB.TabIndex = 4;
-            this.showPasswordLogInChB.Text = "Show Password?";
-            this.showPasswordLogInChB.UseVisualStyleBackColor = true;
-            this.showPasswordLogInChB.CheckedChanged += new System.EventHandler(this.showPasswordChB_CheckedChanged);
+            this.nicknameTB.Location = new System.Drawing.Point(48, 77);
+            this.nicknameTB.Name = "nicknameTB";
+            this.nicknameTB.Size = new System.Drawing.Size(330, 20);
+            this.nicknameTB.TabIndex = 5;
             // 
             // LogInForm
             // 
@@ -240,7 +260,10 @@ namespace PLWinForms
             this.Controls.Add(this.signUpGB);
             this.Controls.Add(this.signUpChB);
             this.Controls.Add(this.logInGB);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LogInForm";
+            this.ShowIcon = false;
             this.Text = "Log In";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.logInGB.ResumeLayout(false);
@@ -272,5 +295,7 @@ namespace PLWinForms
         private System.Windows.Forms.TextBox loginTB;
         private System.Windows.Forms.CheckBox showPasswordSignUpChB;
         private System.Windows.Forms.CheckBox showPasswordLogInChB;
+        private System.Windows.Forms.Label nicknameLbl;
+        private System.Windows.Forms.TextBox nicknameTB;
     }
 }

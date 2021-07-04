@@ -44,5 +44,15 @@
     <Compile Include="IDataExchangerLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.MyFile\Common.MyFile.csproj">
+      <Project>{3931ed60-7329-4624-8d29-9564a88ba680}</Project>
+      <Name>Common.MyFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.User\Common.User.csproj">
+      <Project>{a2b19438-3e46-4b17-9840-094e8b32ade5}</Project>
+      <Name>Common.User</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

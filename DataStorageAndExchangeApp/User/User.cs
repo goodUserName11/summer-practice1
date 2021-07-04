@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace User
+namespace CommonUser
 {
     public class User
     {
@@ -65,11 +65,6 @@ namespace User
             UserDescription = userDescription;
         }
 
-        public User(int iD, string nickname)
-        {
-            ID = iD;
-            Nickname = nickname;
-        }
 
         public User() { }
     }

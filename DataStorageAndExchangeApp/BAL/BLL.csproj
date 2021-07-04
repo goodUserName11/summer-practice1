@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileLogic.cs" />
+    <Compile Include="DataExchengerLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +53,17 @@
       <Project>{4991455c-40da-4eb0-b409-04f2be835b53}</Project>
       <Name>DALInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyFile\MyFile.csproj">
-      <Project>{6a182163-ab38-47e1-85db-4d7a992b499f}</Project>
-      <Name>MyFile</Name>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.MyFile\Common.MyFile.csproj">
+      <Project>{3931ed60-7329-4624-8d29-9564a88ba680}</Project>
+      <Name>Common.MyFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.UserRole\Common.UserRole.csproj">
+      <Project>{bf952bcf-c66c-44fc-9e21-a6a0f25ff1b9}</Project>
+      <Name>Common.UserRole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.User\Common.User.csproj">
+      <Project>{a2b19438-3e46-4b17-9840-094e8b32ade5}</Project>
+      <Name>Common.User</Name>
     </ProjectReference>
     <ProjectReference Include="..\SQLDAL\SQLDAL.csproj">
       <Project>{44373673-6c66-4b09-92bb-e48926c0c1eb}</Project>

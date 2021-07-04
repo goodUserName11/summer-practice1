@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4991455C-40DA-4EB0-B409-04F2BE835B53}</ProjectGuid>
+    <ProjectGuid>{BF952BCF-C66C-44FC-9E21-A6A0F25FF1B9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DALInterfaces</RootNamespace>
-    <AssemblyName>DALInterfaces</AssemblyName>
+    <RootNamespace>Common.UserRole</RootNamespace>
+    <AssemblyName>Common.UserRole</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,18 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataExchangerDao.cs" />
+    <Compile Include="UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.MyFile\Common.MyFile.csproj">
-      <Project>{3931ed60-7329-4624-8d29-9564a88ba680}</Project>
-      <Name>Common.MyFile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataStorageAndExchangeApp\Common.User\Common.User.csproj">
-      <Project>{a2b19438-3e46-4b17-9840-094e8b32ade5}</Project>
-      <Name>Common.User</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
