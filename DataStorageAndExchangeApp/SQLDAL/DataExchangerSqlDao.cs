@@ -135,7 +135,7 @@ namespace SQLDAL
             }
         }
 
-        public void ChangeUserInfo(int userId, string firstname, string lastname, 
+        public void ChangeUserInfo(int userId, int changerId, string firstname, string lastname, 
             string nickname, string description)
         {
             using (_connection = new SqlConnection(_connectionString))
@@ -148,6 +148,7 @@ namespace SQLDAL
                 };
 
                 command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@changerId", changerId);
                 command.Parameters.AddWithValue("@firstname", firstname);
                 command.Parameters.AddWithValue("@lastname", lastname);
                 command.Parameters.AddWithValue("@newNickname", nickname);
@@ -155,11 +156,12 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                command.ExecuteNonQuery();
+                if(command.ExecuteNonQuery() == 0)
+                    throw new ArgumentException("Cannot change user that does not belong to user");
             }
         }
 
-        public void ChangeUserPassword(int userId, string password)
+        public void ChangeUserPassword(int userId, int changerId, string password)
         {
             using (_connection = new SqlConnection(_connectionString))
             {
@@ -171,15 +173,17 @@ namespace SQLDAL
                 };
 
                 command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@changerId", userId);
                 command.Parameters.AddWithValue("@newPassword", password);
 
                 _connection.Open();
 
-                command.ExecuteNonQuery();
+                if (command.ExecuteNonQuery() == 0)
+                    throw new ArgumentException("Cannot change user password that does not belong to user");
             }
         }
 
-        public void ChangeFile(int fileId, string fileName, string description)
+        public void ChangeFile(int fileId, int userId, string fileName, string description)
         {
             using (_connection = new SqlConnection(_connectionString))
             {
@@ -190,13 +194,15 @@ namespace SQLDAL
                     CommandType = System.Data.CommandType.StoredProcedure
                 };
 
-                command.Parameters.AddWithValue("@userId", fileId);
+                command.Parameters.AddWithValue("@fileId", fileId);
+                command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@fileName", fileName);
                 command.Parameters.AddWithValue("@description", description);
 
                 _connection.Open();
 
-                command.ExecuteNonQuery();
+                if(command.ExecuteNonQuery() == 0)
+                    throw new ArgumentException("Cannot Change file that does not belong to user");
             }
         }
 
@@ -244,7 +250,7 @@ namespace SQLDAL
             }
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUser(int userId, int deleterId)
         {
             using (_connection = new SqlConnection(_connectionString))
             {
@@ -256,6 +262,8 @@ namespace SQLDAL
                 };
 
                 command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@deleterId", deleterId);
+
 
                 _connection.Open();
 

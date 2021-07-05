@@ -26,6 +26,7 @@ namespace PLWinForms
             _logic = logic;
             _currentUser = currentUser;
 
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             downloadBtn.Enabled = false;
             editBtn.Enabled = false;
             deleteBtn.Enabled = false;
@@ -62,20 +63,52 @@ namespace PLWinForms
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                _logic.CreateFile(openFileDialog1.FileName, "Empty", _currentUser.ID);
+                FileForm f = new FileForm(openFileDialog1.FileName);
 
-                GetFilesInTable("");
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    _logic.CreateFile(f.FileName, f.FileDescription, _currentUser.ID);
+
+                    GetFilesInTable("");
+                }
             }
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            if (filesDataGridView.SelectedRows.Count > 0)
+            {
+                int selIndex = filesDataGridView.SelectedRows[0].Index;
 
+                _logic.DeleteFile(_files[selIndex].Id, _currentUser.ID);
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            string fileName = (string)filesDataGridView.SelectedRows[0].Cells[0].Value;
+            string desc = (string)filesDataGridView.SelectedRows[0].Cells[1].Value;
 
+            if (filesDataGridView.SelectedRows.Count > 0)
+            {
+                int selIndex = filesDataGridView.SelectedRows[0].Index;
+
+                FileForm f = new FileForm(fileName, desc);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    try 
+                    { 
+                        _logic.ChangeFile(_files[selIndex].Id, _currentUser.ID, f.FileName, f.FileDescription);
+                    }
+                    catch(ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Warning!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    GetFilesInTable("");
+                }
+            }
         }
 
         private void filesDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -95,10 +128,16 @@ namespace PLWinForms
             if (dataGridView.SelectedRows.Count > 0)
             {
                 downloadBtn.Enabled = true;
+                addBtn.Enabled = true;
+                deleteBtn.Enabled = true;
+                editBtn.Enabled = true;
             }
             else
             {
                 downloadBtn.Enabled = false;
+                addBtn.Enabled = false;
+                deleteBtn.Enabled = false;
+                editBtn.Enabled = false;
             }
         }
 

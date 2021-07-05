@@ -110,33 +110,33 @@ namespace BLL
             return _dao.GetUserInfo(userId);
         }
 
-        public bool ChangeUserInfo(int userId, string firstname, string lastname,
+        public bool ChangeUserInfo(int userId, int changerId, string firstname, string lastname,
             string nickname, string description)
         {
             if (string.IsNullOrEmpty(nickname))
                 throw new ArgumentException("Nickname cannot be empty");
 
-            _dao.ChangeUserInfo(userId, firstname, lastname, nickname, description);
+            _dao.ChangeUserInfo(userId, changerId, firstname, lastname, nickname, description);
 
             return true;
         }
 
-        public bool ChangeUserPassword(int userId, string password)
+        public bool ChangeUserPassword(int userId, int changerId, string password)
         {
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentException("Password cannot be empty");
 
-            _dao.ChangeUserPassword(userId, password);
+            _dao.ChangeUserPassword(userId, changerId, password);
 
             return true;
         }
 
-        public bool ChangeFile(int fileId, string fileName, string description)
+        public bool ChangeFile(int fileId, int userId, string fileName, string description)
         {
             if (string.IsNullOrEmpty(fileName))
                 throw new ArgumentException("File name cannot be empty");
 
-            _dao.ChangeFile(fileId, fileName, description);
+            _dao.ChangeFile(fileId, userId, fileName, description);
 
             return true;
         }
@@ -148,9 +148,9 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteUser(int userId)
+        public bool DeleteUser(int userId, int deleterId)
         {
-            _dao.DeleteUser(userId);
+            _dao.DeleteUser(userId, deleterId);
 
             return true; 
         }

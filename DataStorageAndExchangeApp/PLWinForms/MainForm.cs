@@ -29,11 +29,16 @@ namespace PLWinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //LogIn();
 
-            FilesForm fs = new FilesForm(_logic, _currentUser);
-            fs.MdiParent = this;
-            fs.Show();
+            //FilesForm fs = new FilesForm(_logic, _currentUser);
+            //fs.MdiParent = this;
+            //fs.Show();
+
+            UsersForm f = new UsersForm(_logic, _currentUser);
+            f.MdiParent = this;
+            f.Show();
         }
 
         private void changeUserTSBtn_Click(object sender, EventArgs e)

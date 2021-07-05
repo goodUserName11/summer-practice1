@@ -24,16 +24,16 @@ namespace BLLInterfaces
 
         User GetUserInfo(int userId);
 
-        bool ChangeUserInfo(int userId, string firstname, string lastname,
+        bool ChangeUserInfo(int userId, int changerId, string firstname, string lastname,
             string nickname, string description);
 
-        bool ChangeUserPassword(int userId, string password);
+        bool ChangeUserPassword(int userId, int changerId, string password);
 
-        bool ChangeFile(int fileId, string fileName, string description);
+        bool ChangeFile(int fileId, int userId, string fileName, string description);
 
         bool DeleteFile(int fileId, int userId);
 
-        bool DeleteUser(int userId);
+        bool DeleteUser(int userId, int deleterId);
 
         //DeleteUserAdmin
     }

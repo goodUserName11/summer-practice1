@@ -20,19 +20,19 @@ namespace DALInterfaces
 
         byte[] GetFileData(int fileId);
 
-        void ChangeUserInfo(int userId, string firstname, string lastname,
+        void ChangeUserInfo(int userId, int changerId, string firstname, string lastname,
             string nickname, string description);
 
-        void ChangeUserPassword(int userId, string password);
+        void ChangeUserPassword(int userId, int changerId, string password);
 
-        void ChangeFile(int fileId, string fileName, string description);
+        void ChangeFile(int fileId, int userId, string fileName, string description);
 
         void CreateUser(string login, string password, string nickname);
 
         void CreateFile(string fileName, byte[] fileData,
             string fileDescription, int creatorID);
 
-        void DeleteUser(int userId);
+        void DeleteUser(int userId, int deleterId);
 
         void DeleteUserAdmin(int userId, int deleteUserId);
 
