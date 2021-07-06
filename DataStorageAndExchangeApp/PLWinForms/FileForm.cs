@@ -42,6 +42,8 @@ namespace PLWinForms
         /// <param name="description"></param>
         public FileForm(string fileName, string description) : this(fileName)
         {
+            FileDescription = description;
+
             fileDescriptionRTB.Text = description;
 
             _purpose = FileFormPurpose.EditFile;

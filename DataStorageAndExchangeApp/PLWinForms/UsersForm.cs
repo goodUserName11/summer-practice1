@@ -30,11 +30,30 @@ namespace PLWinForms
         private void UsersForm_Load(object sender, EventArgs e)
         {
             GetFilesInTable("");
+
+            this.Location = Point.Empty;
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
             GetFilesInTable(searchTB.Text);
+        }
+
+        private void goToUserBtn_Click(object sender, EventArgs e)
+        {
+            if (usersDataGridView.SelectedCells.Count > 0)
+            {
+                int selIndex = usersDataGridView.SelectedRows[0].Index;
+
+                User profileUser = _logic.GetUserInfo(_users[selIndex].ID);
+
+                UserForm uf = new UserForm(_logic, _currentUser, profileUser);
+
+                uf.MdiParent = this.MdiParent;
+                uf.Show();
+
+                this.Close();
+            }
         }
 
         private void usersDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -49,11 +68,6 @@ namespace PLWinForms
 
                 dataGridView.Rows[selIndex].Selected = true;
             }
-        }
-
-        private void usersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
         void GetFilesInTable(string filter)

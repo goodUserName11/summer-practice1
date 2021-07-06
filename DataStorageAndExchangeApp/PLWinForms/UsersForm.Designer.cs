@@ -30,10 +30,11 @@ namespace PLWinForms
         private void InitializeComponent()
         {
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
+            this.nickname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchBtn = new System.Windows.Forms.Button();
             this.filterLbl = new System.Windows.Forms.Label();
             this.searchTB = new System.Windows.Forms.TextBox();
-            this.nickname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goToUserBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +51,14 @@ namespace PLWinForms
             this.usersDataGridView.ReadOnly = true;
             this.usersDataGridView.Size = new System.Drawing.Size(713, 169);
             this.usersDataGridView.TabIndex = 0;
-            this.usersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersDataGridView_CellClick);
             this.usersDataGridView.SelectionChanged += new System.EventHandler(this.usersDataGridView_SelectionChanged);
+            // 
+            // nickname
+            // 
+            this.nickname.HeaderText = "nickname";
+            this.nickname.Name = "nickname";
+            this.nickname.ReadOnly = true;
+            this.nickname.Width = 200;
             // 
             // searchBtn
             // 
@@ -79,19 +86,23 @@ namespace PLWinForms
             this.searchTB.Size = new System.Drawing.Size(260, 20);
             this.searchTB.TabIndex = 5;
             // 
-            // nickname
+            // goToUserBtn
             // 
-            this.nickname.HeaderText = "nickname";
-            this.nickname.Name = "nickname";
-            this.nickname.ReadOnly = true;
-            this.nickname.Width = 200;
+            this.goToUserBtn.Location = new System.Drawing.Point(574, 207);
+            this.goToUserBtn.Name = "goToUserBtn";
+            this.goToUserBtn.Size = new System.Drawing.Size(112, 45);
+            this.goToUserBtn.TabIndex = 8;
+            this.goToUserBtn.Text = "To user profile";
+            this.goToUserBtn.UseVisualStyleBackColor = true;
+            this.goToUserBtn.Click += new System.EventHandler(this.goToUserBtn_Click);
             // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 319);
+            this.ClientSize = new System.Drawing.Size(733, 315);
             this.ControlBox = false;
+            this.Controls.Add(this.goToUserBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.filterLbl);
             this.Controls.Add(this.searchTB);
@@ -118,5 +129,6 @@ namespace PLWinForms
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Label filterLbl;
         private System.Windows.Forms.TextBox searchTB;
+        private System.Windows.Forms.Button goToUserBtn;
     }
 }

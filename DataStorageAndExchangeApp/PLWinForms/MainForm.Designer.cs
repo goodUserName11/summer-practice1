@@ -78,26 +78,29 @@ namespace PLWinForms
             // yourProfileTSMenuItem
             // 
             this.yourProfileTSMenuItem.Name = "yourProfileTSMenuItem";
-            this.yourProfileTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.yourProfileTSMenuItem.Size = new System.Drawing.Size(180, 22);
             this.yourProfileTSMenuItem.Text = "Your Profile";
+            this.yourProfileTSMenuItem.Click += new System.EventHandler(this.currentUserTSBtn_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // filesTSMenuItem
             // 
             this.filesTSMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.filesTSMenuItem.Name = "filesTSMenuItem";
-            this.filesTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.filesTSMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filesTSMenuItem.Text = "Files";
+            this.filesTSMenuItem.Click += new System.EventHandler(this.filesTSMenuItem_Click);
             // 
             // usersTSMenuItem
             // 
             this.usersTSMenuItem.Name = "usersTSMenuItem";
-            this.usersTSMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.usersTSMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usersTSMenuItem.Text = "Users";
+            this.usersTSMenuItem.Click += new System.EventHandler(this.usersTSMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -117,6 +120,7 @@ namespace PLWinForms
             this.currentUserTSBtn.Name = "currentUserTSBtn";
             this.currentUserTSBtn.Size = new System.Drawing.Size(53, 22);
             this.currentUserTSBtn.Text = "CurUser";
+            this.currentUserTSBtn.Click += new System.EventHandler(this.currentUserTSBtn_Click);
             // 
             // toolStripSeparator4
             // 

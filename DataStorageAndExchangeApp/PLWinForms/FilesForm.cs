@@ -38,6 +38,8 @@ namespace PLWinForms
         private void FilesForm_Load(object sender, EventArgs e)
         {
             GetFilesInTable("");
+
+            this.Location = Point.Empty;
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
