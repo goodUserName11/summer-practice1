@@ -81,8 +81,15 @@ namespace PLWinForms
             if (filesDataGridView.SelectedRows.Count > 0)
             {
                 int selIndex = filesDataGridView.SelectedRows[0].Index;
-
-                _logic.DeleteFile(_files[selIndex].Id, _currentUser.ID);
+                try
+                {
+                    _logic.DeleteFile(_files[selIndex].Id, _currentUser.ID);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Warning!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -105,7 +112,7 @@ namespace PLWinForms
                     catch(ArgumentException ex)
                     {
                         MessageBox.Show(ex.Message, "Warning!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                     GetFilesInTable("");

@@ -156,7 +156,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if(command.ExecuteNonQuery() == 0)
+                if(command.ExecuteNonQuery() <= 0)
                     throw new ArgumentException("Cannot change user that does not belong to user");
             }
         }
@@ -178,7 +178,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if (command.ExecuteNonQuery() == 0)
+                if (command.ExecuteNonQuery() <= 0)
                     throw new ArgumentException("Cannot change user password that does not belong to user");
             }
         }
@@ -201,7 +201,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if(command.ExecuteNonQuery() == 0)
+                if(command.ExecuteNonQuery() <= 0)
                     throw new ArgumentException("Cannot Change file that does not belong to user");
             }
         }
@@ -267,7 +267,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if(command.ExecuteNonQuery() == 0)
+                if(command.ExecuteNonQuery() <= 0)
                     throw new ArgumentException("Cannot delete user that does not belong to user");
             }
         }
@@ -288,7 +288,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if (command.ExecuteNonQuery() == 0)
+                if (command.ExecuteNonQuery() <= 0)
                     throw new InvalidOperationException("Not enough rights to delete user");
             }
         }
@@ -309,7 +309,7 @@ namespace SQLDAL
 
                 _connection.Open();
 
-                if(command.ExecuteNonQuery() == 0) 
+                if (command.ExecuteNonQuery() <= 0) 
                     throw new ArgumentException("Cannot delete file that does not belong to user");
             }
         }
