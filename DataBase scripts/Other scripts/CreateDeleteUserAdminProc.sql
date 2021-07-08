@@ -1,7 +1,7 @@
 USE [DataStotageAndExchangeDB]
 GO
 
-/****** Object:  StoredProcedure [dbo].[DeleteUserAdmin]    Script Date: 05.07.2021 13:55:50 ******/
+/****** Object:  StoredProcedure [dbo].[DeleteUserAdmin]    Script Date: 08.07.2021 22:05:32 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,7 +16,7 @@ AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+	-- SET NOCOUNT ON;
 
 	DECLARE @roleId int
 

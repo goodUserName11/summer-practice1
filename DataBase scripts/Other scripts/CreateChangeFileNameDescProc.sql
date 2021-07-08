@@ -1,7 +1,7 @@
 USE [DataStotageAndExchangeDB]
 GO
 
-/****** Object:  StoredProcedure [dbo].[ChangeFileNameDesc]    Script Date: 05.07.2021 19:42:16 ******/
+/****** Object:  StoredProcedure [dbo].[ChangeFileNameDesc]    Script Date: 08.07.2021 22:03:06 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -18,7 +18,8 @@ AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+	-- SET NOCOUNT ON;
+
 	DECLARE @roleId int
     -- Insert statements for procedure here
 	SELECT @roleId = RoleID FROM Users
