@@ -45,7 +45,7 @@ namespace BLL
             {
                 return _dao.GetUser(login, password);
             }
-            else throw new ArgumentException("Login and password cannot be empty!");
+            else throw new FormatException("Login and password cannot be empty!");
         }
 
         public User SignUp(string login, string nickname, string password)
@@ -60,7 +60,7 @@ namespace BLL
                 }
                 else throw new InvalidOperationException("Such login already used!");
             }
-            else throw new ArgumentException("Login, password and nickname cannot be empty!");
+            else throw new FormatException("Login, password and nickname cannot be empty!");
         }
 
         public bool CreateFile(string fileName, string descrition, int userId)
@@ -114,7 +114,7 @@ namespace BLL
             string nickname, string description)
         {
             if (string.IsNullOrEmpty(nickname))
-                throw new ArgumentException("Nickname cannot be empty");
+                throw new FormatException("Nickname cannot be empty");
 
             _dao.ChangeUserInfo(userId, changerId, firstname, lastname, nickname, description);
 
@@ -124,7 +124,7 @@ namespace BLL
         public bool ChangeUserPassword(int userId, int changerId, string password)
         {
             if (string.IsNullOrEmpty(password))
-                throw new ArgumentException("Password cannot be empty");
+                throw new FormatException("Password cannot be empty");
 
             _dao.ChangeUserPassword(userId, changerId, password);
 
@@ -134,7 +134,7 @@ namespace BLL
         public bool ChangeFile(int fileId, int userId, string fileName, string description)
         {
             if (string.IsNullOrEmpty(fileName))
-                throw new ArgumentException("File name cannot be empty");
+                throw new FormatException("File name cannot be empty");
 
             _dao.ChangeFile(fileId, userId, fileName, description);
 

@@ -135,15 +135,12 @@ namespace PLWinForms
                     DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                catch (ArgumentException error)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(error.Message, "Warning!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (InvalidOperationException error)
-                {
-                    MessageBox.Show(error.Message, "Warning!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (ex is FormatException || ex is InvalidOperationException)
+                        MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -167,15 +164,12 @@ namespace PLWinForms
                     DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                catch (ArgumentException error)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(error.Message, "Warning!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (InvalidOperationException error)
-                {
-                    MessageBox.Show(error.Message, "Warning!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (ex is FormatException || ex is InvalidOperationException)
+                        MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

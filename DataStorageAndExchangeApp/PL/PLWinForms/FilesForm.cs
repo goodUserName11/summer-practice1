@@ -26,7 +26,6 @@ namespace PLWinForms
             _logic = logic;
             _currentUser = currentUser;
 
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             downloadBtn.Enabled = false;
             editBtn.Enabled = false;
             deleteBtn.Enabled = false;
@@ -85,11 +84,17 @@ namespace PLWinForms
                 {
                     _logic.DeleteFile(_files[selIndex].Id, _currentUser.ID);
                 }
-                catch (ArgumentException ex)
+                catch (FormatException ex)
                 {
-                    MessageBox.Show(ex.Message, "Warning!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                GetFilesInTable("");
             }
         }
 
@@ -109,10 +114,13 @@ namespace PLWinForms
                     {
                         _logic.ChangeFile(_files[selIndex].Id, _currentUser.ID, f.FileName, f.FileDescription);
                     }
-                    catch (ArgumentException ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Warning!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (ex is FormatException || ex is ArgumentException)
+                            MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        else MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     GetFilesInTable("");

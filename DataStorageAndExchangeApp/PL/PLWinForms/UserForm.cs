@@ -91,22 +91,33 @@ namespace PLWinForms
 
             if (!HasNamesErrors())
             {
-                _logic.ChangeUserInfo(_profileUser.ID, _currentUser.ID, firstNameTB.Text,
-                    lastNameTB.Text, nicknameTB.Text, descriptionRTB.Text);
-
-                _profileUser.FirstName = firstNameTB.Text;
-                _profileUser.LastName = lastNameTB.Text;
-                _profileUser.Nickname = nicknameTB.Text;
-                _profileUser.UserDescription = descriptionRTB.Text;
-
-                if (_currentUser.ID == _profileUser.ID)
+                try
                 {
-                    _currentUser.Nickname = _profileUser.Nickname;
+                    _logic.ChangeUserInfo(_profileUser.ID, _currentUser.ID, firstNameTB.Text,
+                        lastNameTB.Text, nicknameTB.Text, descriptionRTB.Text);
 
-                    this.Text = _profileUser.Nickname + " " + _text;
+                    _profileUser.FirstName = firstNameTB.Text;
+                    _profileUser.LastName = lastNameTB.Text;
+                    _profileUser.Nickname = nicknameTB.Text;
+                    _profileUser.UserDescription = descriptionRTB.Text;
 
-                    MainForm parent = (MainForm)(this.MdiParent);
-                    parent.SetCurrentUserNickname(_profileUser.Nickname);
+                    if (_currentUser.ID == _profileUser.ID)
+                    {
+                        _currentUser.Nickname = _profileUser.Nickname;
+
+                        this.Text = _profileUser.Nickname + " " + _text;
+
+                        MainForm parent = (MainForm)(this.MdiParent);
+                        parent.SetCurrentUserNickname(_profileUser.Nickname);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    if(ex is FormatException || ex is ArgumentException)
+                        MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    else MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -121,12 +132,24 @@ namespace PLWinForms
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            _logic.DeleteUser(_profileUser.ID, _currentUser.ID);
-
-            if (_profileUser.ID == _currentUser.ID)
+            try
             {
-                MainForm mf = (MainForm)this.MdiParent;
-                mf.ExitFromCurrentUser();
+                _logic.DeleteUser(_profileUser.ID, _currentUser.ID);
+
+                if (_profileUser.ID == _currentUser.ID)
+                {
+                    MainForm mf = (MainForm)this.MdiParent;
+                    mf.ExitFromCurrentUser();
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected exception:  " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -136,7 +159,19 @@ namespace PLWinForms
 
             if (cf.ShowDialog() == DialogResult.OK)
             {
-                _logic.ChangeUserPassword(_profileUser.ID, _currentUser.ID, cf.NewPassword);
+                try
+                {
+                    _logic.ChangeUserPassword(_profileUser.ID, _currentUser.ID, cf.NewPassword);
+                }
+                catch(FormatException ex)
+                {
+                    MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unexpected exception:  " + ex.Message, "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
