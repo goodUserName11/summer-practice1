@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD7F991F-9C81-45A7-A2BB-91F006008DC4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataExchengerLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.MyFile\Common.MyFile.csproj">
+      <Project>{c96acd16-efda-4ef8-a6f0-e773ac8bc1fd}</Project>
+      <Name>Common.MyFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.UserRole\Common.UserRole.csproj">
+      <Project>{7b61a500-c23f-42a3-81a3-630240c3fb39}</Project>
+      <Name>Common.UserRole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.User\Common.User.csproj">
+      <Project>{1c3f6849-69af-4e88-a553-ef48ee274cfb}</Project>
+      <Name>Common.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DAL\DALInterfaces\DALInterfaces.csproj">
+      <Project>{1f9dddba-5e00-4485-9f20-c3887fe9dfb3}</Project>
+      <Name>DALInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLLInterfaces\BLLInterfaces.csproj">
+      <Project>{c764282f-bb4b-4c7c-86bb-adafa7943820}</Project>
+      <Name>BLLInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
